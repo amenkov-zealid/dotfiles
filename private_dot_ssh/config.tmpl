@@ -1,0 +1,10 @@
+Host github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+
+{{- if eq .chezmoi.hostname "work-macbook" }}
+Host internal-company
+  HostName internal.company.com
+  User andrey
+  IdentityFile ~/.ssh/work_ed25519
+{{- end }}

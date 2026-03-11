@@ -1,0 +1,15 @@
+{
+  "autosave": "on_focus_change",
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+  "buffer_font_family": "Maple Mono Normal NF",
+  "buffer_font_size": 13,
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 400,
+  "ui_font_size": 15,
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright", "PyRight", "pylsp"]
+    }
+  }
+}

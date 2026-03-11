@@ -1,0 +1,10 @@
+alias l 'eza -lah'
+alias la 'eza -lAh'
+alias ll 'eza -lh'
+alias ls 'eza -G'
+alias lsa 'eza -lah'
+alias oc 'opencode'
+alias lzd 'lazydocker'
+
+abbr -a zshconfig 'zed ~/.zshrc'
+abbr -a fishconfig 'zed ~/.config/fish/config.fish'

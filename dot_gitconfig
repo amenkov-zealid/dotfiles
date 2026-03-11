@@ -1,0 +1,57 @@
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[rebase]
+    autosquash = true
+    autostash = true
+    updateRefs = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+    followTags = true
+
+[core]
+    autocrlf = input
+    pager = delta
+
+[pager]
+    diff = delta
+    log = delta
+    show = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    renames = true
+
+[rerere]
+    enabled = true
+
+[alias]
+    lg = log --graph --pretty=format:'%C(auto)%h %C(cyan)%ad %C(green)%an%C(auto)%d %s' --date=short
+    lga = lg --all
+    review = log origin/main..HEAD --stat
+    review-compact = log origin/main..HEAD --oneline
+    changes = diff origin/main...
+    staged = diff --cached
+    conflicts = diff --name-only --diff-filter=U
+    fixup = commit --fixup
+    wip = commit -am "WIP"
+    undo = reset --soft HEAD~1
