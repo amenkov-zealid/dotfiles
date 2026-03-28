@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "darwin" -}}
+# Let Homebrew set its own paths cleanly (avoids duplicates with /etc/zprofile)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# openjdk must come before Homebrew bin
+export PATH="/opt/homebrew/opt/openjdk/bin:$HOME/bin:$HOME/.local/bin:$PATH"
+
+export HOMEBREW_CASK_OPTS="--appdir=~/Desktop/"
+{{ else -}}
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+{{ end -}}
+export XDG_CONFIG_HOME="$HOME/.config"
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
+
+export JIRA_URL=https://zealid.atlassian.net/
+export AWS_PROFILE="eks-dev"
+export AWS_CLUSTER_NAME="dev1-eks-cluster"
+export KUBECONFIG="$HOME/.kube/config"
+
+{{ if eq .chezmoi.os "darwin" -}}
+export OPENAI_API_KEY="$(security find-generic-password -s openai-api-key -w 2>/dev/null)"
+{{ else -}}
+[ -f "$HOME/.env" ] && source "$HOME/.env"
+{{ end -}}

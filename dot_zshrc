@@ -5,6 +5,7 @@
 # ------------------------------------------------------------------------------
 # ENVIRONMENT VARIABLES
 # ------------------------------------------------------------------------------
+
 export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export EDITOR_NO_WAIT="zed"
@@ -59,9 +60,12 @@ source $ZSH/oh-my-zsh.sh
 # ------------------------------------------------------------------------------
 # COMPLETION SYSTEM
 # ------------------------------------------------------------------------------
+# Cache brew prefix to avoid multiple subshell calls
+BREW_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
+
 # Only run compinit once per day for performance
 # https://gist.github.com/ctechols/ca1035271ad134841284
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+[[ -d "$BREW_PREFIX/share/zsh/site-functions" ]] && fpath+=("$BREW_PREFIX/share/zsh/site-functions")
 fpath+=~/.zfunc
 
 autoload -Uz compinit
@@ -99,10 +103,14 @@ alias lsa='eza -lah'
 # EXTERNAL TOOLS
 # ------------------------------------------------------------------------------
 # Auto-pairing brackets
-source $(brew --prefix)/share/zsh-autopair/autopair.zsh
+[[ -f "$BREW_PREFIX/share/zsh-autopair/autopair.zsh" ]] && source "$BREW_PREFIX/share/zsh-autopair/autopair.zsh"
 
 # FZF fuzzy finder
 eval "$(fzf --zsh)"
+
+# Atuin shell history (load before starship for best performance)
+# Bind ctrl-r but not up arrow
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # Starship prompt (load last for best performance)
 eval "$(starship init zsh)"
