@@ -30,8 +30,8 @@
 [interactive]
     diffFilter = delta --color-only
 
-[delta]
-    navigate = true
+[include]
+    path = ~/.config/git/delta
 
 [merge]
     conflictstyle = zdiff3

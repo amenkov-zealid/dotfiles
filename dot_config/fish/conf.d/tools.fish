@@ -1,25 +1,7 @@
-if status is-interactive
-    if type -q starship
-        starship init fish | source
-    end
+# tools.fish — sourced for all sessions (interactive + scripts)
+# Tool init hooks that need prompts/completions go in config.fish under is-interactive
 
-    if type -q zoxide
-        zoxide init fish | source
-    end
-
-    if type -q mise
-        mise activate fish | source
-    end
-
-    if type -q direnv
-        direnv hook fish | source
-    end
-
-    if type -q atuin
-        atuin init fish | source
-    end
-
-    if type -q fzf
-        fzf --fish | source
-    end
+# Homebrew environment (sets HOMEBREW_PREFIX etc.)
+if test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv | source
 end
