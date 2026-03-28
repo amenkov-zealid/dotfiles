@@ -1,0 +1,71 @@
+# ==============================================================================
+# ATUIN CONFIGURATION
+# ==============================================================================
+
+## Search mode: fuzzy matches fzf-style behaviour
+search_mode = "fuzzy"
+
+## Filter mode: global shows history from all sessions/hosts (like fzf over full history)
+filter_mode = "global"
+
+## Up-arrow stays session-scoped (less noisy for quick repeats), ctrl-r goes global
+filter_mode_shell_up_key_binding = "session"
+search_mode_shell_up_key_binding = "fuzzy"
+
+## Compact style — minimal chrome, more results visible (similar to fzf)
+style = "compact"
+
+## Show enough results without going full screen
+inline_height = 10
+
+## Show the full command when it overflows the line
+show_preview = true
+max_preview_height = 2
+
+## Press enter to execute immediately (like fzf's default behaviour with shell bindings)
+enter_accept = false
+
+## Don't save secrets in history
+secrets_filter = true
+
+# Invert the UI - put the search bar at the top
+invert = true
+
+## Ignore noisy commands
+history_filter = [
+  "^ls",
+  "^ll",
+  "^la",
+  "^l$",
+  "^cd ",
+  "^pwd$",
+  "^exit$",
+  "^clear$",
+]
+
+[stats]
+common_subcommands = [
+  "cargo",
+  "docker",
+  "git",
+  "go",
+  "helm",
+  "kubectl",
+  "npm",
+  "pnpm",
+  "systemctl",
+  "tmux",
+]
+
+[sync]
+records = true
+
+[keys]
+scroll_exits = true
+
+[ui]
+## duration + time gives fzf-like context, command expands to fill width
+columns = ["directory", "command"]
+
+[theme]
+name = "marine"
