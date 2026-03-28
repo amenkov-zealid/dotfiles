@@ -1,7 +1,45 @@
-font-family = "Maple Mono NF"
 font-size = 13
-theme = "light:Solarized Light,dark:Solarized Dark"
-window-padding-x = 8
-window-padding-y = 8
+# font-family = BlexMono Nerd Font Mono
+# font-family = FiraCode Nerd Font
+# font-family = Rec Mono Linear
+# font-family = Maple Mono
+# font-family = Iosevka Nerd Font
 
-shell-integration = fish
+# theme = Cobalt Next
+theme = GitHub Dark High Contrast
+keybind = shift+enter=text:\x1b\r
+keybind = ctrl+alt+y=toggle_window_decorations
+
+# Set fish as default shell
+command = /opt/homebrew/bin/fish --login --interactive
+shell-integration = detect
+
+term = xterm-256color
+copy-on-select = clipboard
+selection-clear-on-copy = true
+
+# shell-integration-features = ssh
+
+# Enable everything for a smooth experience (especially remote work)
+shell-integration-features = sudo,ssh-env
+
+# The style of the macOS titlebar. Available values are: "native", "transparent", "tabs", and "hidden".
+# "tabs" shows window buttons and tab bar, but hides the titlebar text
+macos-titlebar-style = tabs
+
+# Show window buttons (close, minimize, maximize)
+# macos-window-buttons = hidden
+
+# macOS: To hide the titlebar without removing the native window borders or rounded corners, use macos-titlebar-style = hidden instead.
+# https://ghostty.org/docs/config/reference#window-decoration
+window-decoration = true
+
+# Make split pane borders visible
+# Set a visible color for split dividers matching GitHub Dark High Contrast theme
+# Using a bright border color that matches the high contrast aesthetic
+split-divider-color = #404040
+
+# Optional: adjust opacity of unfocused splits to make active split more obvious
+unfocused-split-opacity = 0.5
+
+auto-update = off
