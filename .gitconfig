@@ -32,6 +32,7 @@
 
 [include]
 	path = ~/.config/git/delta
+	path = ~/.config/git/local
 
 [merge]
 	conflictstyle = zdiff3
@@ -55,6 +56,3 @@
 	fixup = commit --fixup
 	wip = commit -am "WIP"
 	undo = reset --soft HEAD~1
-[user]
-	name = Andrey Menkov
-	email = andrei.menkou@zealid.com

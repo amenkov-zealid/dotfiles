@@ -3,6 +3,7 @@
 .config/zsh/.zsh_history
 .config/zsh/.zcompdump*
 .config/fish/fish_variables
+.config/git/local
 .config/chezmoi/chezmoistate.boltdb
 .config/containers/*.lock
 .DS_Store
