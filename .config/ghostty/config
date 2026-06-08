@@ -1,4 +1,7 @@
-font-size = 13
+# font-size = 13
+# font-family = IBM Plex Mono Text
+# font-family = Fira Code Retina
+# window-title-font-family = "Fira Code"
 # font-family = BlexMono Nerd Font Mono
 # font-family = FiraCode Nerd Font
 # font-family = Rec Mono Linear
@@ -6,12 +9,17 @@ font-size = 13
 # font-family = Iosevka Nerd Font
 
 # theme = Cobalt Next
-theme = GitHub Dark High Contrast
+# theme = GitHub Dark High Contrast
+# theme = Catppuccin Frappe
+config-file = ?auto/theme.ghostty
+config-file = ?extra
+
 keybind = shift+enter=text:\x1b\r
 keybind = ctrl+alt+y=toggle_window_decorations
 
 # Set fish as default shell
 command = /opt/homebrew/bin/fish --login --interactive
+# command = /opt/homebrew/bin/fish
 shell-integration = detect
 
 term = xterm-256color
@@ -22,9 +30,12 @@ selection-clear-on-copy = true
 
 # Enable everything for a smooth experience (especially remote work)
 shell-integration-features = sudo,ssh-env
+# shell-integration-features = ssh-env,ssh-terminfo
+# shell-integration-features = no-cursor,no-title
 
 # The style of the macOS titlebar. Available values are: "native", "transparent", "tabs", and "hidden".
 # "tabs" shows window buttons and tab bar, but hides the titlebar text
+# macos-titlebar-style = tabs
 macos-titlebar-style = tabs
 
 # Show window buttons (close, minimize, maximize)
@@ -32,7 +43,8 @@ macos-titlebar-style = tabs
 
 # macOS: To hide the titlebar without removing the native window borders or rounded corners, use macos-titlebar-style = hidden instead.
 # https://ghostty.org/docs/config/reference#window-decoration
-window-decoration = true
+#
+# window-decoration = client
 
 # Make split pane borders visible
 # Set a visible color for split dividers matching GitHub Dark High Contrast theme
@@ -40,6 +52,23 @@ window-decoration = true
 split-divider-color = #404040
 
 # Optional: adjust opacity of unfocused splits to make active split more obvious
-unfocused-split-opacity = 0.5
+unfocused-split-opacity = 0.3
+# background-opacity = 0.95
+# background-image = /Users/andreimenkou/Downloads/security-break-grim-reaper-hacker-qj.jpg
+# background-image = /Users/andreimenkou/Downloads/Wallpapers/porsche-night.jpg
+# background-image = /Users/andreimenkou/Downloads/Wallpapers/block-wave-moon.png
+background-image-fit = cover
 
 auto-update = off
+
+# https://ghostty.org/docs/config/reference#tab-inherit-working-directory
+tab-inherit-working-directory = false
+split-inherit-working-directory = true
+
+# cursor-style = underline
+
+# https://ghostty.org/docs/config/reference#font-feature
+
+mouse-hide-while-typing = true
+macos-window-buttons = hidden
+macos-option-as-alt = true

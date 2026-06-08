@@ -1,11 +1,16 @@
 # ------------------------------------------------------------------------------
+# SHELL
+# ------------------------------------------------------------------------------
+# set -gx SHELL "fish"
+set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
+
+# ------------------------------------------------------------------------------
 # PATH
 # ------------------------------------------------------------------------------
-{{ if eq .chezmoi.os "darwin" -}}
-fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/opt/openjdk/bin
-{{ end -}}
-fish_add_path $HOME/bin
+# fish_add_path /opt/homebrew/bin
+# fish_add_path /opt/homebrew/opt/openjdk/bin
+# fish_add_path $HOME/bin
 fish_add_path $HOME/.local/bin
 
 # ------------------------------------------------------------------------------
@@ -17,9 +22,7 @@ set -gx EDITOR "zed --wait"
 set -gx EDITOR_NO_WAIT "zed"
 set -gx VISUAL "zed --wait"
 
-{{ if eq .chezmoi.os "darwin" -}}
-set -gx HOMEBREW_CASK_OPTS "--appdir=~/Desktop/"
-{{ end -}}
+set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications/"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx K9S_CONFIG_DIR "$HOME/.config/k9s"
 
@@ -29,19 +32,11 @@ set -gx AWS_CLUSTER_NAME "dev1-eks-cluster"
 set -gx KUBECONFIG "$HOME/.kube/config"
 
 # Disable fish greeting
-set -U fish_greeting
+# set -U fish_greeting
 
 # Load secrets
-{{ if eq .chezmoi.os "darwin" -}}
 # macOS: load from Keychain
 set -gx OPENAI_API_KEY (security find-generic-password -s openai-api-key -w 2>/dev/null)
-{{ else -}}
-# Linux: load from ~/.env if present
-if test -f $HOME/.env
-    source $HOME/.env
-end
-{{ end -}}
-
 # SSH terminal color (pink background for remote sessions)
 if set -q SSH_CONNECTION
     printf "\033]11;#FF00FF\007"

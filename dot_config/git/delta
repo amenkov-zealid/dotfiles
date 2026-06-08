@@ -1,7 +1,0 @@
-[delta]
-    navigate = true          # n/N to jump between diff sections
-    side-by-side = true      # two-column layout
-    line-numbers = true      # absolute line numbers in both columns
-    hyperlinks = true        # clickable file paths in supported terminals
-    tabs = 4                 # tab width (matches most Python projects)
-    diff-stat-align-width = 48  # align the +/- summary column

@@ -1,0 +1,98 @@
+{
+  "diff_view_style": "unified",
+  "file_finder": {
+    "file_icons": true,
+  },
+  "max_tabs": 10,
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "terminal": {
+    "font_family": "Fira Code",
+    "font_size": 12.0,
+    "cursor_shape": "bar",
+    "shell": "system",
+    "show_count_badge": true,
+    "dock": "bottom",
+  },
+  "auto_update": false,
+  "cli_default_open_behavior": "new_window",
+  "ssh_connections": [
+    {
+      "host": "hetzner",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/deploy/OF_api"],
+        },
+        {
+          "paths": ["/home/deploy/openclaw"],
+        },
+      ],
+    },
+    {
+      "host": "of_api",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/deploy/OF_api"],
+        },
+      ],
+    },
+  ],
+  // "project_name": "BLA",
+  "project_panel": {
+    "sort_mode": "directories_first",
+    "hide_hidden": false,
+    "hide_root": false,
+    "indent_guides": {
+      "show": "never",
+    },
+    "sticky_scroll": true,
+    "git_status_indicator": true,
+    "diagnostic_badges": false,
+    "bold_folder_labels": false,
+    "indent_size": 25.0,
+    "entry_spacing": "comfortable",
+    "folder_icons": true,
+    "file_icons": true,
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "tree_view": true,
+    "show_count_badge": false,
+    "file_icons": true,
+    "dock": "left",
+  },
+  "autosave": "on_focus_change",
+  "base_keymap": "VSCode",
+  "vim_mode": false,
+  "buffer_font_family": "Fira Code",
+  // "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
+  "buffer_font_fallbacks": ["PowerlineSymbols"],
+  "buffer_font_size": 13,
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 400.0,
+  "ui_font_size": 15,
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright", "PyRight", "pylsp"],
+    },
+  },
+  "file_types": {
+    "TOML": ["config"],
+  },
+}

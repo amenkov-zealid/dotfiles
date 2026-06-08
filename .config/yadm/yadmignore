@@ -1,0 +1,12 @@
+.config/colima/
+.config/zsh/.zsh_sessions/
+.config/zsh/.zsh_history
+.config/zsh/.zcompdump*
+.config/fish/fish_variables
+.config/chezmoi/chezmoistate.boltdb
+.config/containers/*.lock
+.DS_Store
+*.bak
+*.local
+*secret*
+*token*

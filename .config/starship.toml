@@ -1,21 +1,29 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
-$git_state\
-$git_status\
+$git_metrics\
+$python\
 $cmd_duration\
 $line_break\
-$character"""
-
+$character
+"""
+#
+#
 add_newline = true
+#
+#
+# A minimal left prompt
+# format = """$python$directory$character"""
+
+# move the rest of the prompt to the right
+# right_format = """$all"""
+#
 
 [directory]
 style = "blue"
-read_only = " 󰌾"
+# read_only = " 󰌾"
 
 [character]
 success_symbol = "[❯](purple)"
@@ -23,8 +31,9 @@ error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-format = '\[[ $branch]($style)\]'
+# format = '[$symbol$branch]($style)'
 style = "bright-black"
+# symbol = ""
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
@@ -34,12 +43,18 @@ style = "cyan"
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
+[git_metrics]
+added_style = 'blue'
+deleted_style = 'red'
+format = '\[[+$added]($added_style)/[-$deleted]($deleted_style)\] '
+disabled = false
+
 [cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
+format = '[⏱ $duration]($style)'
 style = "yellow"
 
 [python]
-format = '\[[ (${version})(\($virtualenv\))]($style)\]'
+format = '[ (${version})]($style) '
 style = "bright-black"
 detect_extensions = []
 detect_files = []
