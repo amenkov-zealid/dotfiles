@@ -1,0 +1,38 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "enableWorkflows": true,
+  "enabledPlugins": {
+    "brainstorm@umputun-cc-thingz": false,
+    "plannotator@plannotator": false,
+    "revdiff@revdiff": true
+  },
+  "extraKnownMarketplaces": {
+    "umputun-cc-thingz": {
+      "source": {
+        "source": "github",
+        "repo": "umputun/cc-thingz"
+      }
+    },
+    "plannotator": {
+      "source": {
+        "source": "github",
+        "repo": "backnotprop/plannotator"
+      }
+    },
+    "revdiff": {
+      "source": {
+        "source": "github",
+        "repo": "umputun/revdiff"
+      }
+    }
+  },
+  "syntaxHighlightingDisabled": false,
+  "effortLevel": "medium",
+  "tui": "fullscreen",
+  "theme": "auto",
+  "preferredNotifChannel": "auto",
+  "teammateMode": "tmux",
+  "inputNeededNotifEnabled": true
+}
