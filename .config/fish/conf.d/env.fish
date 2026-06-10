@@ -21,6 +21,9 @@ set -gx LC_ALL en_US.UTF-8
 set -gx EDITOR "zed --wait"
 set -gx EDITOR_NO_WAIT "zed"
 set -gx VISUAL "zed --wait"
+set -gx PAGER less
+set -gx LESS "-R --use-color -F -X -i -M"
+set -gx MANPAGER "less -R --use-color -Dd+r -Du+b"
 
 set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications/"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
