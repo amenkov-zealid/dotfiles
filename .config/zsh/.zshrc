@@ -1,9 +1,8 @@
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-export PAGER="less"
-export LESS="-R --use-color -F -X -i -M"
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export PAGER="bat --paging=always"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # ------------------------------------------------------------------------------
 # HISTORY
