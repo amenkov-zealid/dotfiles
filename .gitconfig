@@ -57,5 +57,6 @@
 	fixup = commit --fixup
 	wip = commit -am "WIP"
 	undo = reset --soft HEAD~1
+	coi = !git checkout $(git branch --sort=committerdate | fzf)
 [difftool "pycharm"]
 	cmd = pycharm diff \"$LOCAL\" \"$REMOTE\"

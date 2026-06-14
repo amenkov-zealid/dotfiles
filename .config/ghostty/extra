@@ -13,8 +13,8 @@ adjust-cell-height = 2
 # theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 background-opacity = 0.9
 background-blur-radius = 20
-window-padding-x = 10
-window-padding-y = 8
+# window-padding-x = 10
+# window-padding-y = 8
 window-theme = auto
 
 # Window state - restores all splits and tabs on reopen.
@@ -22,7 +22,7 @@ window-theme = auto
 window-save-state = always
 
 # Cursor - bar is less distracting than block when reading long output.
-cursor-style = bar
+cursor-style = block
 cursor-style-blink = true
 cursor-opacity = 0.8
 
@@ -34,8 +34,8 @@ copy-on-select = clipboard
 
 # Shell integration - gives Ghostty semantic knowledge of your prompt:
 # working directory tracking across splits, better scrollback navigation.
-shell-integration = detect
-shell-integration-features = cursor,sudo,title
+# shell-integration = detect
+# shell-integration-features = cursor,sudo,title
 
 # Performance - Claude Code generates long outputs. 100 000 lines is
 # generous. Disable resize overlay; it flickers on fast redraws.

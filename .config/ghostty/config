@@ -20,16 +20,16 @@ keybind = ctrl+alt+y=toggle_window_decorations
 # Set fish as default shell
 command = /opt/homebrew/bin/fish --login --interactive
 # command = /opt/homebrew/bin/fish
-shell-integration = detect
+shell-integration = fish
 
-term = xterm-256color
+# term = xterm-256color
 copy-on-select = clipboard
 selection-clear-on-copy = true
 
 # shell-integration-features = ssh
 
 # Enable everything for a smooth experience (especially remote work)
-shell-integration-features = sudo,ssh-env
+shell-integration-features = ssh-env,no-cursor
 # shell-integration-features = ssh-env,ssh-terminfo
 # shell-integration-features = no-cursor,no-title
 
@@ -44,7 +44,7 @@ macos-titlebar-style = tabs
 # macOS: To hide the titlebar without removing the native window borders or rounded corners, use macos-titlebar-style = hidden instead.
 # https://ghostty.org/docs/config/reference#window-decoration
 #
-# window-decoration = client
+window-decoration = none
 
 # Make split pane borders visible
 # Set a visible color for split dividers matching GitHub Dark High Contrast theme
@@ -57,7 +57,7 @@ unfocused-split-opacity = 0.3
 # background-image = /Users/andreimenkou/Downloads/security-break-grim-reaper-hacker-qj.jpg
 # background-image = /Users/andreimenkou/Downloads/Wallpapers/porsche-night.jpg
 # background-image = /Users/andreimenkou/Downloads/Wallpapers/block-wave-moon.png
-background-image-fit = cover
+# background-image-fit = cover
 
 auto-update = off
 

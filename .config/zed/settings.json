@@ -1,13 +1,19 @@
 {
-  "diff_view_style": "unified",
+  "theme": {
+    "mode": "system",
+    "light": "JetBrains Islands Light",
+    "dark": "JetBrains Islands Dark",
+  },
+  "helix_mode": false,
+  "diff_view_style": "split",
   "file_finder": {
     "file_icons": true,
   },
   "max_tabs": 10,
   "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
+    "mode": "system",
+    "light": "JetBrains Icons Light",
+    "dark": "JetBrains Icons Dark",
   },
   "terminal": {
     "font_family": "Fira Code",
@@ -79,10 +85,9 @@
   },
   "autosave": "on_focus_change",
   "base_keymap": "VSCode",
-  "vim_mode": false,
-  "buffer_font_family": "Fira Code",
-  // "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
-  "buffer_font_fallbacks": ["PowerlineSymbols"],
+  "vim_mode": true,
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
   "buffer_font_size": 13,
   "buffer_line_height": "comfortable",
   "buffer_font_weight": 400.0,
