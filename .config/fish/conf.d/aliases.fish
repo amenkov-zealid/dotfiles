@@ -7,6 +7,10 @@ alias oc 'opencode'
 alias lzd 'lazydocker'
 alias vim 'nvim'
 
+alias v "nvim"
+alias ta "tmux attach"
+alias tls "tmux ls"
+
 # Git aliases (oh-my-zsh style)
 alias g 'git'
 alias ga 'git add'

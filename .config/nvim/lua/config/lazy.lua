@@ -15,6 +15,8 @@ require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.editor.fzf-lua" },
+    { import = "lazyvim.plugins.extras.ai.claudecode" },
     { import = "plugins" },
   },
   defaults = { lazy = false, version = false },

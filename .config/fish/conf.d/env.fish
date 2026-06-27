@@ -4,6 +4,7 @@
 # set -gx SHELL "fish"
 set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
+set -gx CLAUDE_CODE_NO_FLICKER 1
 
 # ------------------------------------------------------------------------------
 # PATH
@@ -21,7 +22,9 @@ set -gx LC_ALL en_US.UTF-8
 set -gx EDITOR "zed --wait"
 set -gx EDITOR_NO_WAIT "zed"
 set -gx VISUAL "zed --wait"
-set -gx PAGER "bat --paging=always"
+# set -gx PAGER "bat --paging=always"
+set -gx LESS "-R --mouse --wheel-lines=3 -F -X -i"
+set -gx PAGER "less"
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications/"

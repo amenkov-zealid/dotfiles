@@ -1,4 +1,4 @@
-# font-size = 13
+# font-size = 14
 # font-family = IBM Plex Mono Text
 # font-family = Fira Code Retina
 # window-title-font-family = "Fira Code"
@@ -18,8 +18,8 @@ keybind = shift+enter=text:\x1b\r
 keybind = ctrl+alt+y=toggle_window_decorations
 
 # Set fish as default shell
-command = /opt/homebrew/bin/fish --login --interactive
-# command = /opt/homebrew/bin/fish
+# command = /opt/homebrew/bin/fish --login --interactive
+command = /opt/homebrew/bin/fish
 shell-integration = fish
 
 # term = xterm-256color
@@ -44,7 +44,7 @@ macos-titlebar-style = tabs
 # macOS: To hide the titlebar without removing the native window borders or rounded corners, use macos-titlebar-style = hidden instead.
 # https://ghostty.org/docs/config/reference#window-decoration
 #
-window-decoration = none
+# window-decoration = none
 
 # Make split pane borders visible
 # Set a visible color for split dividers matching GitHub Dark High Contrast theme
@@ -68,7 +68,15 @@ split-inherit-working-directory = true
 # cursor-style = underline
 
 # https://ghostty.org/docs/config/reference#font-feature
+font-thicken = true
+# Valid values are integers between 0 and 255. 0 does not correspond to no thickening, rather it corresponds to the lightest available thickening.
+font-thicken-strength = 50
 
 mouse-hide-while-typing = true
-macos-window-buttons = hidden
+# macos-window-buttons = hidden
 macos-option-as-alt = true
+
+macos-titlebar-proxy-icon = hidden
+title = " "
+
+custom-shader = ~/.config/ghostty/shaders/cursor.glsl

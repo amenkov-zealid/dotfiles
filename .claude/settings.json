@@ -2,6 +2,7 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "model": "opus",
   "enableWorkflows": true,
   "enabledPlugins": {
     "brainstorm@umputun-cc-thingz": false,
@@ -28,9 +29,9 @@
       }
     }
   },
-  "syntaxHighlightingDisabled": false,
+  "syntaxHighlightingDisabled": true,
   "effortLevel": "medium",
-  "tui": "fullscreen",
+  "tui": "default",
   "theme": "auto",
   "preferredNotifChannel": "auto",
   "teammateMode": "tmux",

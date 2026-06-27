@@ -2,6 +2,7 @@
 .config/zsh/.zsh_sessions/
 .config/zsh/.zsh_history
 .config/zsh/.zcompdump*
+.config/zsh/plugins/
 .config/fish/fish_variables
 .config/git/local
 .config/chezmoi/chezmoistate.boltdb

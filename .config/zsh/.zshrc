@@ -29,7 +29,38 @@ bindkey "\e[B" history-beginning-search-forward
 setopt autocd
 
 # Initialize completion
-autoload -U compinit; compinit
+autoload -Uz compinit
+# Only do the full security check once a day; otherwise load cached dump.
+if [[ -n ${ZDOTDIR}/.zcompdump(#qNmh+24) ]]; then
+  compinit -d "${ZDOTDIR}/.zcompdump"
+else
+  compinit -C -d "${ZDOTDIR}/.zcompdump"
+fi
+
+# ------------------------------------------------------------------------------
+# COMPLETION STYLING
+# ------------------------------------------------------------------------------
+# Case-insensitive, partial-word, and hyphen/underscore-insensitive matching
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-zA-Z}={A-Za-z}' \
+  'r:|[._-]=* r:|=*' \
+  'l:|=* r:|=*'
+
+# Colorize matches using LS_COLORS
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Group results under labeled headers + descriptions
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*' verbose yes
+
+# Completion cache (dir already exists)
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${ZDOTDIR}/.zcompcache"
+
+# Complete . and .. ; nicer process completion for kill
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 # ------------------------------------------------------------------------------
 # ALIASES
@@ -66,45 +97,44 @@ alias zshconfig='zed ~/.zshrc'
 alias fishconfig='zed ~/.config/fish/config.fish'
 
 # ------------------------------------------------------------------------------
-# PLUGINS
+# PLUGINS (znap)
 # ------------------------------------------------------------------------------
-if [[ -o zle && -t 0 && -t 1 ]] && command -v brew >/dev/null 2>&1; then
-    brew_prefix="$(brew --prefix)"
+# Bootstrap znap (https://github.com/marlonrichert/zsh-snap)
+source ~/.config/zsh/plugins/zsh-snap/znap.zsh
 
-    if [[ -r "$brew_prefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
-        source "$brew_prefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-    fi
+# fzf-tab: replaces the completion menu with a fuzzy fzf popup.
+# Must load after compinit, before autosuggestions / syntax-highlighting.
+znap source Aloxaf/fzf-tab
 
-    if [[ -r "$brew_prefix/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
-        source "$brew_prefix/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    fi
+# fzf-tab behavior
+zstyle ':fzf-tab:*' fzf-flags --height=50% --layout=reverse --border
+zstyle ':fzf-tab:*' switch-group ',' '.'   # cycle groups with , / .
+# Preview directory contents when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath 2>/dev/null'
+# Preview file/branch context for git
+zstyle ':fzf-tab:complete:git-(add|diff|restore|checkout):*' fzf-preview \
+  'git diff --color=always -- $word 2>/dev/null | head -200'
 
-    unset brew_prefix
-fi
+# Smarter autosuggestions: also draw from completion, accept one word with Alt-Right.
+# Ctrl-Right is reserved by the window manager, so Alt-Right is used instead.
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^[[1;3C' forward-word
+
+# autosuggestions first; fast-syntax-highlighting must be sourced last
+znap source zsh-users/zsh-autosuggestions
+znap source zdharma-continuum/fast-syntax-highlighting
 
 # ------------------------------------------------------------------------------
-# TOOLS
+# TOOLS (cached via `znap eval`)
 # ------------------------------------------------------------------------------
-if [[ -o zle && -t 0 && -t 1 ]] && command -v fzf >/dev/null 2>&1; then
-    source <(fzf --zsh)
-fi
+[[ -o zle && -t 0 && -t 1 ]] && command -v fzf >/dev/null && znap eval fzf 'fzf --zsh'
 
-if command -v zoxide >/dev/null 2>&1; then
-    eval "$(zoxide init zsh)"
-fi
-
-if command -v mise >/dev/null 2>&1; then
-    eval "$(mise activate zsh)"
-fi
-
-if command -v direnv >/dev/null 2>&1; then
-    eval "$(direnv hook zsh)"
-fi
+command -v zoxide >/dev/null && znap eval zoxide 'zoxide init zsh'
+command -v mise   >/dev/null && znap eval mise   'mise activate zsh'
+command -v direnv >/dev/null && znap eval direnv 'direnv hook zsh'
 
 # if [[ -o zle && -t 0 && -t 1 ]] && command -v atuin >/dev/null 2>&1; then
 #     eval "$(atuin init zsh --disable-up-arrow)"
 # fi
 
-if [[ -t 1 ]] && command -v starship >/dev/null 2>&1; then
-    eval "$(starship init zsh)"
-fi
+[[ -t 1 ]] && command -v starship >/dev/null && znap eval starship 'starship init zsh'
