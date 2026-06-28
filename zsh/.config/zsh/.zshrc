@@ -122,7 +122,10 @@ alias fishconfig='zed ~/.config/fish/config.fish'
 # PLUGINS (znap)
 # ------------------------------------------------------------------------------
 # Bootstrap znap (https://github.com/marlonrichert/zsh-snap)
-source ~/.config/zsh/plugins/zsh-snap/znap.zsh
+ZNAP_DIR="${ZDOTDIR}/plugins/zsh-snap"
+[[ -f "$ZNAP_DIR/znap.zsh" ]] ||
+  git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git "$ZNAP_DIR"
+source "$ZNAP_DIR/znap.zsh"
 
 # fzf-tab: replaces the completion menu with a fuzzy fzf popup.
 # Must load after compinit, before autosuggestions / syntax-highlighting.

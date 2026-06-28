@@ -65,7 +65,7 @@ Restart your terminal. Zsh will load from `~/.config/zsh/.zshrc` via `ZDOTDIR` s
 
 ### 7. Install zsh plugins
 
-Plugins are managed by [znap](https://github.com/marlonrichert/zsh-snap). On first launch, znap will auto-install itself and the plugins declared in `.zshrc`.
+Plugins are managed by [znap](https://github.com/marlonrichert/zsh-snap). On first shell launch, `.zshrc` will automatically clone znap into `~/.config/zsh/plugins/zsh-snap/` and then use it to install all declared plugins (fzf-tab, zsh-autosuggestions, fast-syntax-highlighting). No manual step needed.
 
 ### 8. Install Neovim plugins
 
