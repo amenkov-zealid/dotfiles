@@ -1,4 +1,5 @@
 {
+  "soft_wrap": "editor_width",
   "agent_servers": {
     "opencode": {
       "favorite_config_option_values": {
@@ -118,4 +119,7 @@
   "file_types": {
     "TOML": ["config"],
   },
+  "show_wrap_guides": true,
+  "wrap_guides": [80],
+  "preferred_line_length": 80,
 }

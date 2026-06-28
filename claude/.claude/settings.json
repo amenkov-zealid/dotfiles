@@ -2,7 +2,6 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "opus",
   "enableWorkflows": true,
   "enabledPlugins": {
     "brainstorm@umputun-cc-thingz": false,
@@ -33,7 +32,7 @@
   "effortLevel": "medium",
   "tui": "default",
   "theme": "auto",
-  "preferredNotifChannel": "auto",
+  "preferredNotifChannel": "ghostty",
   "teammateMode": "tmux",
   "inputNeededNotifEnabled": true
 }

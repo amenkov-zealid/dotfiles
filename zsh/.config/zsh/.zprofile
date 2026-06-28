@@ -24,6 +24,8 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR="zed --wait"
 export EDITOR_NO_WAIT="zed"
 export VISUAL="zed --wait"
+export LESS="-R --mouse --wheel-lines=3 -F -X -i"
+export CLAUDE_CODE_NO_FLICKER=1
 
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications/"
 export XDG_CONFIG_HOME="$HOME/.config"

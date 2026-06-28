@@ -19,8 +19,8 @@ keybind = ctrl+alt+y=toggle_window_decorations
 
 # Set fish as default shell
 # command = /opt/homebrew/bin/fish --login --interactive
-command = /opt/homebrew/bin/fish
-shell-integration = fish
+# command = /opt/homebrew/bin/fish
+shell-integration = detect
 
 # term = xterm-256color
 copy-on-select = clipboard
@@ -36,7 +36,7 @@ shell-integration-features = ssh-env,no-cursor
 # The style of the macOS titlebar. Available values are: "native", "transparent", "tabs", and "hidden".
 # "tabs" shows window buttons and tab bar, but hides the titlebar text
 # macos-titlebar-style = tabs
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 
 # Show window buttons (close, minimize, maximize)
 # macos-window-buttons = hidden
@@ -44,7 +44,7 @@ macos-titlebar-style = tabs
 # macOS: To hide the titlebar without removing the native window borders or rounded corners, use macos-titlebar-style = hidden instead.
 # https://ghostty.org/docs/config/reference#window-decoration
 #
-# window-decoration = none
+window-decoration = none
 
 # Make split pane borders visible
 # Set a visible color for split dividers matching GitHub Dark High Contrast theme

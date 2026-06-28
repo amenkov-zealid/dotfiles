@@ -4,7 +4,8 @@
 # font-family = JetBrainsMonoNerdFont
 # font-size = 14
 # font-thicken = true
-adjust-cell-height = 2
+# adjust-cell-height = 2
+adjust-cell-height = 12%
 
 # Theme - auto light/dark follows the OS appearance setting.
 # Switch your OS to dark mode and Ghostty changes without restarting.
