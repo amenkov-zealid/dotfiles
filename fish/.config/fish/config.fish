@@ -9,7 +9,14 @@
 # INTERACTIVE SESSION
 # ------------------------------------------------------------------------------
 if status is-interactive
-    if type -q fzf;      fzf --fish | source; end
+    # Bootstrap Fisher (https://github.com/jorgebucaran/fisher) and install everything
+    # declared in fish_plugins. Only runs once per machine, mirrors znap's self-bootstrap.
+    if not functions -q fisher
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+        fisher install jorgebucaran/fisher
+        fisher update
+    end
+
     if type -q zoxide;   zoxide init fish | source; end
     if type -q mise;     mise activate fish | source; end
     # if type -q direnv;   direnv hook fish | source; end

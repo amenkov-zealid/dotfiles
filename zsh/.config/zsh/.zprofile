@@ -21,9 +21,9 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 # ------------------------------------------------------------------------------
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export EDITOR="zed --wait"
-export EDITOR_NO_WAIT="zed"
-export VISUAL="zed --wait"
+export EDITOR="env NVIM_APPNAME=nvim-lite nvim"
+export VISUAL="$EDITOR"
+# export EDITOR_NO_WAIT="zed"
 export LESS="-R --mouse --wheel-lines=3 -F -X -i"
 export CLAUDE_CODE_NO_FLICKER=1
 

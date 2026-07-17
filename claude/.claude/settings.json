@@ -2,19 +2,72 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "permissions": {
+    "defaultMode": "plan"
+  },
+  "model": "claude-fable-5[1m]",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/andreimenkou/.config/agterm/agent-status/agterm-agent-status.sh' blocked"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/andreimenkou/.config/agterm/agent-status/agterm-agent-status.sh' active --blink"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/andreimenkou/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/andreimenkou/.config/agterm/agent-status/agterm-agent-status.sh' completed --auto-reset"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/andreimenkou/.config/agterm/agent-status/agterm-agent-status.sh' active --blink"
+          }
+        ]
+      }
+    ]
+  },
   "enableWorkflows": true,
   "enabledPlugins": {
     "brainstorm@umputun-cc-thingz": false,
-    "plannotator@plannotator": false,
+    "plannotator@plannotator": true,
     "revdiff@revdiff": true
   },
   "extraKnownMarketplaces": {
-    "umputun-cc-thingz": {
-      "source": {
-        "source": "github",
-        "repo": "umputun/cc-thingz"
-      }
-    },
     "plannotator": {
       "source": {
         "source": "github",
@@ -26,13 +79,20 @@
         "source": "github",
         "repo": "umputun/revdiff"
       }
+    },
+    "umputun-cc-thingz": {
+      "source": {
+        "source": "github",
+        "repo": "umputun/cc-thingz"
+      }
     }
   },
   "syntaxHighlightingDisabled": true,
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "tui": "default",
   "theme": "auto",
   "preferredNotifChannel": "ghostty",
   "teammateMode": "tmux",
+  "remoteControlAtStartup": false,
   "inputNeededNotifEnabled": true
 }

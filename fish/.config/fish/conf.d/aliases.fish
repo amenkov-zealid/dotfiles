@@ -3,16 +3,16 @@
 # alias ll 'eza -lh'
 # alias ls 'eza -G'
 # alias lsa 'eza -lah'
-alias oc 'opencode'
-alias lzd 'lazydocker'
-alias vim 'nvim'
+alias oc opencode
+alias lzd lazydocker
+alias vim nvim
 
-alias v "nvim"
+alias v nvim
 alias ta "tmux attach"
 alias tls "tmux ls"
 
 # Git aliases (oh-my-zsh style)
-alias g 'git'
+alias g git
 alias ga 'git add'
 alias gaa 'git add --all'
 alias gb 'git branch'
@@ -31,3 +31,4 @@ alias gst 'git status'
 
 abbr -a zshconfig 'zed ~/.zshrc'
 abbr -a fishconfig 'zed ~/.config/fish/config.fish'
+abbr -a cc claude

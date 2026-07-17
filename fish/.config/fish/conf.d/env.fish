@@ -19,21 +19,23 @@ fish_add_path $HOME/.local/bin
 # ------------------------------------------------------------------------------
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
+# set -gx EDITOR "nvim"
+# set -gx EDITOR_NO_WAIT "zed"
 set -gx EDITOR "zed --wait"
-set -gx EDITOR_NO_WAIT "zed"
 set -gx VISUAL "zed --wait"
 # set -gx PAGER "bat --paging=always"
 set -gx LESS "-R --mouse --wheel-lines=3 -F -X -i"
-set -gx PAGER "less"
+set -gx PAGER less
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications/"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx K9S_CONFIG_DIR "$HOME/.config/k9s"
+set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
 
 set -gx JIRA_URL "https://zealid.atlassian.net/"
-set -gx AWS_PROFILE "eks-dev"
-set -gx AWS_CLUSTER_NAME "dev1-eks-cluster"
+set -gx AWS_PROFILE eks-dev
+set -gx AWS_CLUSTER_NAME dev1-eks-cluster
 set -gx KUBECONFIG "$HOME/.kube/config"
 
 # Disable fish greeting

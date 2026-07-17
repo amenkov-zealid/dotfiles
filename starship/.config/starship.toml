@@ -47,14 +47,16 @@ style = "bright-black"
 added_style = 'blue'
 deleted_style = 'red'
 format = '\[[+$added]($added_style)/[-$deleted]($deleted_style)\] '
-disabled = false
+disabled = true
 
 [cmd_duration]
 format = '[⏱ $duration]($style)'
 style = "yellow"
+disabled = true
 
 [python]
 format = '[ (${version})]($style) '
 style = "bright-black"
 detect_extensions = []
 detect_files = []
+disabled = true

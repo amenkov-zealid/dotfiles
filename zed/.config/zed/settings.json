@@ -1,4 +1,6 @@
 {
+  "use_system_prompts": true,
+  "use_system_path_prompts": true,
   "soft_wrap": "editor_width",
   "agent_servers": {
     "opencode": {
@@ -60,7 +62,6 @@
       ],
     },
   ],
-  // "project_name": "BLA",
   "project_panel": {
     "sort_mode": "directories_first",
     "hide_hidden": false,
@@ -102,13 +103,13 @@
     "dock": "left",
   },
   "autosave": "on_focus_change",
-  "base_keymap": "JetBrains",
-  "vim_mode": true,
-  // "buffer_font_family": "JetBrains Mono",
-  "buffer_font_family": "Fira Code",
+  "base_keymap": "SublimeText",
+  "buffer_font_family": "JetBrains Mono",
   "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
   "buffer_font_size": 13,
-  "buffer_line_height": "comfortable",
+  "buffer_line_height": {
+    "custom": 1.600000023841858,
+  },
   "buffer_font_weight": 400.0,
   "ui_font_size": 15,
   "languages": {
@@ -119,7 +120,25 @@
   "file_types": {
     "TOML": ["config"],
   },
-  "show_wrap_guides": true,
-  "wrap_guides": [80],
-  "preferred_line_length": 80,
+  // "show_wrap_guides": true,
+  "wrap_guides": [100],
+  "preferred_line_length": 100,
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+  },
+
+  // Remove the < > buttons from the tab bar
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+  },
+
+  // Enable Vim mode. You probably found this already if you care.
+  "vim_mode": false,
+
+  // Use relative line numbers.
+  "relative_line_numbers": "enabled",
 }
+
+// Docs: https://romanzipp.com/blog/must-have-zed-settings

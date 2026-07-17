@@ -44,7 +44,7 @@ mise install
 From `~/dotfiles`, symlink all packages into `$HOME`:
 
 ```bash
-stow zsh git nvim tmux ghostty fish zed starship mise atuin claude kitty
+stow zsh git nvim tmux ghostty fish zed starship mise atuin claude kitty ripgrep
 ```
 
 Or apply everything at once:
@@ -89,7 +89,7 @@ If you prefer fish as your interactive shell:
 chsh -s $(which fish)
 ```
 
-Fish plugins live in `fish/conf.d/` and are auto-sourced on shell start.
+Plugins are managed by [Fisher](https://github.com/jorgebucaran/fisher). On first fish launch, `config.fish` will automatically bootstrap Fisher and install everything declared in `fish_plugins` (currently `fzf.fish`). No manual step needed. Hand-written config that isn't a plugin still lives in `fish/conf.d/` and is auto-sourced.
 
 ---
 
@@ -98,7 +98,7 @@ Fish plugins live in `fish/conf.d/` and are auto-sourced on shell start.
 | Package | What it configures |
 |---------|-------------------|
 | `zsh` | Zsh shell, znap, fzf-tab, zoxide, starship |
-| `fish` | Fish shell, env vars, plugins |
+| `fish` | Fish shell, env vars, Fisher-managed plugins |
 | `nvim` | Neovim (LazyVim) |
 | `tmux` | tmux with Nord theme and TPM plugins |
 | `git` | Git with delta pager, rerere, aliases |
@@ -109,3 +109,4 @@ Fish plugins live in `fish/conf.d/` and are auto-sourced on shell start.
 | `mise` | Global tool versions (python, uv) |
 | `atuin` | Shell history sync |
 | `claude` | Claude Code settings |
+| `ripgrep` | Ripgrep default search flags (smart-case) |

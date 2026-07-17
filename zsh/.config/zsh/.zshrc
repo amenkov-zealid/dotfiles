@@ -21,9 +21,12 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 
-# Use the up and down keys to navigate the history
-bindkey "\e[A" history-beginning-search-backward
-bindkey "\e[B" history-beginning-search-forward
+# Use the up and down keys to navigate the history (prefix search, cursor at end of line)
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "\e[A" up-line-or-beginning-search
+bindkey "\e[B" down-line-or-beginning-search
 
 # Move to directories without cd
 setopt autocd
@@ -47,6 +50,7 @@ fi
 #   'l:|=* r:|=*'
 
 # --- fzf-tab recommended defaults -------------------------------------------
+# (fzf-tab zstyles themselves live in fzf.zsh, sourced in the plugins section)
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -56,20 +60,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
-# preview directory's content with eza when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-# custom fzf flags
-# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
-zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
-# To make fzf-tab follow FZF_DEFAULT_OPTS.
-# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
-# switch group using `<` and `>`
-zstyle ':fzf-tab:*' switch-group '<' '>'
 # ----------------------------------------------------------------------------
-
-# TMUX popup
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # zstyle ':completion:*' verbose yes
 
@@ -115,8 +106,53 @@ alias gl='git pull'
 alias gp='git push'
 alias gst='git status'
 
-alias zshconfig='zed ~/.zshrc'
-alias fishconfig='zed ~/.config/fish/config.fish'
+# Fuzzy-open a file from ~/.config: `conf` or `conf <query>`
+conf() {
+  local file
+  file=$(fd --type f --hidden --follow \
+      --exclude .git --exclude plugins --exclude node_modules --exclude kitty-themes \
+      . ~/.config |
+    fzf --query="$*") || return
+  ${=EDITOR:-nvim} "$file"
+}
+
+# Fuzzy-switch between git worktrees for the current repo: `wt`
+wt() {
+  local dir
+  dir=$(git worktree list --porcelain | awk '
+    /^worktree /{p=$2}
+    /^branch /{b=$2; sub("refs/heads/","",b); print p"\t"b; next}
+    /^detached/{print p"\t(detached)"}
+  ' | fzf --delimiter='\t' --with-nth=2 \
+      --preview 'git -C {1} log --oneline --color=always -n 20' \
+      --preview-window down:60% | cut -f1) || return
+  [[ -n "$dir" ]] && cd "$dir"
+}
+
+# Create (or resume) a worktree for <branch>, init submodules, and cd into it
+wta() {
+  if [[ -z "$1" ]]; then
+    echo "usage: wta <branch>"
+    return 1
+  fi
+  local dir
+  dir=$(mise run wt-add "$1") || return 1
+  cd "$dir"
+}
+
+# Fuzzy-remove a worktree (never lists the main checkout)
+wtrm() {
+  local sel dir branch
+  sel=$(git worktree list --porcelain | awk '
+    /^worktree /{p=$2}
+    /^branch /{b=$2; sub("refs/heads/","",b); print p"\t"b; next}
+    /^detached/{print p"\t(detached)"}
+  ' | rg '/worktrees/' | fzf --delimiter='\t' --with-nth=2) || return
+  [[ -z "$sel" ]] && return
+  dir=$(cut -f1 <<< "$sel")
+  branch=$(cut -f2 <<< "$sel")
+  mise run wt-rm "$branch"
+}
 
 # ------------------------------------------------------------------------------
 # PLUGINS (znap)
@@ -131,14 +167,12 @@ source "$ZNAP_DIR/znap.zsh"
 # Must load after compinit, before autosuggestions / syntax-highlighting.
 znap source Aloxaf/fzf-tab
 
-# fzf-tab behavior
-zstyle ':fzf-tab:*' fzf-flags --height=50% --layout=reverse --border
-zstyle ':fzf-tab:*' switch-group ',' '.'   # cycle groups with , / .
-# Preview directory contents when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath 2>/dev/null'
-# Preview file/branch context for git
-zstyle ':fzf-tab:complete:git-(add|diff|restore|checkout):*' fzf-preview \
-  'git diff --color=always -- $word 2>/dev/null | head -200'
+# fzf env vars + fzf-tab behavior
+source "${ZDOTDIR}/fzf.zsh"
+
+# fzf-git.sh: Ctrl-G Ctrl-{B,F,H,T,S,R,...} fuzzy pickers for branches,
+# changed files, hashes, tags, stashes, remotes
+znap source junegunn/fzf-git.sh
 
 # Smarter autosuggestions: also draw from completion, accept one word with Alt-Right.
 # Ctrl-Right is reserved by the window manager, so Alt-Right is used instead.
@@ -163,3 +197,7 @@ command -v direnv >/dev/null && znap eval direnv 'direnv hook zsh'
 # fi
 
 [[ -t 1 ]] && command -v starship >/dev/null && znap eval starship 'starship init zsh'
+
+# agterm agent-status integration
+[[ -f "$HOME/.config/agterm/agent-status/shell/integration.sh" ]] &&
+  source "$HOME/.config/agterm/agent-status/shell/integration.sh"

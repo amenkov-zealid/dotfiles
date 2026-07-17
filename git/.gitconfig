@@ -20,6 +20,7 @@
 
 [core]
 	autocrlf = input
+	editor = env NVIM_APPNAME=nvim-lite nvim
 	pager = delta
 
 [pager]
@@ -36,6 +37,7 @@
 
 [merge]
 	conflictstyle = zdiff3
+  tool = pycharm
 
 [diff]
 	algorithm = histogram
@@ -58,5 +60,9 @@
 	wip = commit -am "WIP"
 	undo = reset --soft HEAD~1
 	coi = !git checkout $(git branch --sort=committerdate | fzf)
+
 [difftool "pycharm"]
-	cmd = pycharm diff \"$LOCAL\" \"$REMOTE\"
+	cmd = pycharm diff "$LOCAL" "$REMOTE"
+
+[mergetool "pycharm"]
+	cmd = pycharm merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
