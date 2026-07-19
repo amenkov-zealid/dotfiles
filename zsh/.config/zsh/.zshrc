@@ -154,6 +154,9 @@ wtrm() {
   mise run wt-rm "$branch"
 }
 
+# agterm helpers: `ags <branch>` (worktree + agterm session running claude)
+source "${ZDOTDIR}/agterm.zsh"
+
 # ------------------------------------------------------------------------------
 # PLUGINS (znap)
 # ------------------------------------------------------------------------------

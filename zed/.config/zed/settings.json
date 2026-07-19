@@ -19,7 +19,7 @@
     "dark": "JetBrains Islands Dark",
   },
   "helix_mode": false,
-  "diff_view_style": "split",
+  "diff_view_style": "unified",
   "file_finder": {
     "file_icons": true,
   },
@@ -36,6 +36,12 @@
     "shell": "system",
     "show_count_badge": true,
     "dock": "right",
+    "detect_venv": {
+      "on": {
+        "directories": [".venv", "venv"],
+        "activate_script": "default",
+      },
+    },
   },
   "auto_update": false,
   "cli_default_open_behavior": "new_window",
@@ -97,13 +103,14 @@
     "model_parameters": [],
   },
   "git_panel": {
+    "group_by": "none",
     "tree_view": true,
     "show_count_badge": false,
     "file_icons": true,
     "dock": "left",
   },
   "autosave": "on_focus_change",
-  "base_keymap": "SublimeText",
+  "base_keymap": "VSCode",
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
   "buffer_font_size": 13,
@@ -114,7 +121,11 @@
   "ui_font_size": 15,
   "languages": {
     "Python": {
-      "language_servers": ["basedpyright", "PyRight", "pylsp"],
+      "language_servers": ["basedpyright", "ruff", "!pyright", "!pylsp"],
+      "format_on_save": "on",
+      "formatter": [
+        { "language_server": { "name": "ruff" } },
+      ],
     },
   },
   "file_types": {
