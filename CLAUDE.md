@@ -77,6 +77,11 @@ Apply keymap edits without restarting: `agtermctl keymap reload` (prints `ok`, o
 
 Custom commands in `keymap.conf` can bind either a single chord (`ctrl+opt+y`) or a tmux-style leader sequence (`ctrl+a>g`). **A leader claims its prefix key globally** — agterm swallows it waiting for the follow-up, so it never reaches the shell. Don't use a prefix the shell needs: `ctrl+a` was previously the Lazygit leader and broke `beginning-of-line` in zsh; it's now the single chord `ctrl+opt+g`.
 
+Two rules for the shell line of a `command`, both learned the hard way (a violation exits **127** and shows a failure banner):
+
+1. **Absolute paths.** The line runs in a non-interactive `/bin/sh -c` with the app's GUI `PATH` (`/usr/bin:/bin:/usr/sbin:/sbin`) — *not* your login shell's. Nothing from Homebrew is on it, `agtermctl` included (it lives at `/opt/homebrew/bin/agtermctl`). Only `/usr/bin` tools like `open` work bare.
+2. **Quoted `"$AGT_X"`, not raw `{AGT_X}`.** The `{AGT_X}` tokens substitute raw into the sh line, so any value containing a space word-splits. `$AGT_SOCKET` always does — it is under `~/Library/Application Support/`. Pass `--socket "$AGT_SOCKET"` explicitly too: agtermctl's socket auto-resolution reads `$AGTERM_SOCKET`, which custom commands don't get, and falls back to a `/tmp` path that doesn't exist.
+
 ## Neovim
 
 Built on [LazyVim](https://lazyvim.org). Custom plugins go in `nvim/.config/nvim/lua/plugins/` (`.keep` file holds the dir). `lazyvim.json` tracks enabled LazyVim extras. `lazy-lock.json` pins plugin versions — commit it to keep the environment reproducible.
