@@ -44,7 +44,7 @@ mise install
 From `~/dotfiles`, symlink all packages into `$HOME`:
 
 ```bash
-stow zsh git nvim tmux ghostty fish zed starship mise atuin claude kitty ripgrep
+stow zsh git nvim tmux ghostty agterm fish zed starship mise atuin claude kitty ripgrep
 ```
 
 Or apply everything at once:
@@ -104,6 +104,7 @@ Plugins are managed by [Fisher](https://github.com/jorgebucaran/fisher). On firs
 | `git` | Git with delta pager, rerere, aliases |
 | `ghostty` | Ghostty terminal |
 | `kitty` | Kitty terminal |
+| `agterm` | agterm terminal: keymap rebinds, custom commands, scoped ghostty overrides |
 | `zed` | Zed editor |
 | `starship` | Starship prompt |
 | `mise` | Global tool versions (python, uv) |
