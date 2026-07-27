@@ -5,7 +5,8 @@
     hyperlinks = true        # clickable file paths in supported terminals
     tabs = 4                 # tab width (matches most Python projects)
     diff-stat-align-width = 48  # align the +/- summary column
-    syntax-theme = DarkNeon
+    # syntax-theme = DarkNeon
+    syntax-theme = ansi
     # hyperlinks-file-link-format = "zed://file/{path}:{line}"
     # hyperlinks-file-link-format = "idea://open?file={path}&line={line}"
     hyperlinks-file-link-format = "pycharm://open?file={path}&line={line}"
