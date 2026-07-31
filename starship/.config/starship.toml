@@ -3,7 +3,9 @@
 format = """
 $directory\
 $git_branch\
+$git_status\
 $git_metrics\
+$fill\
 $python\
 $cmd_duration\
 $line_break\
@@ -16,10 +18,10 @@ add_newline = true
 #
 # A minimal left prompt
 # format = """$python$directory$character"""
-
-# move the rest of the prompt to the right
-# right_format = """$all"""
 #
+
+[fill]
+symbol = " "
 
 [directory]
 style = "blue"
@@ -36,8 +38,18 @@ style = "bright-black"
 # symbol = ""
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
-style = "cyan"
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold"
+conflicted = "[ ${count}](bold red) "
+ahead = "[ ${count}](bold green) "
+behind = "[ ${count}](bold red) "
+diverged = "[ ${ahead_count}/${behind_count}](bold magenta) "
+untracked = "[  ${count}](yellow) "
+stashed = "[ ${count}](blue) "
+modified = "[ ${count}](yellow) "
+staged = "[ ${count}](green) "
+renamed = "[ ${count}](cyan) "
+deleted = "[ ${count}](red) "
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
@@ -52,11 +64,9 @@ disabled = true
 [cmd_duration]
 format = '[⏱ $duration]($style)'
 style = "yellow"
-disabled = true
+disabled = false
 
 [python]
 format = '[ (${version})]($style) '
 style = "bright-black"
-detect_extensions = []
-detect_files = []
-disabled = true
+disabled = false
